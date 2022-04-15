@@ -1,11 +1,12 @@
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,7 +16,7 @@ public class EmulatorTest {
 
     private AndroidDriver driver;
 
-    @Before
+    @BeforeMethod
     public void SetUp() {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, "pixel");
@@ -42,7 +43,7 @@ public class EmulatorTest {
         driver.findElementById("com.android.calculator2:id/eq").click();
         Assert.assertEquals("3",driver.findElementById("com.android.calculator2:id/result").getText());
     }
-    @After
+    @AfterMethod
     public void tearDown() {
        driver.quit();
     }
